@@ -28,6 +28,7 @@ def increment(key, participant_identifier, count=1):
         r.hincrby(freq_cache_key, new_value, 1)
     except (ConnectionError, ResponseError):
         # Handle Redis failures gracefully
+        print('django-experiments failure 1')
         pass
 
 def clear(key, participant_identifier):
@@ -41,6 +42,7 @@ def clear(key, participant_identifier):
         freq_cache_key = COUNTER_FREQ_CACHE_KEY % key
         r.hincrby(freq_cache_key, freq, -1)
     except (ConnectionError, ResponseError):
+        print('django-experiments failure 2')
         # Handle Redis failures gracefully
         pass
 
@@ -49,6 +51,7 @@ def get(key):
         cache_key = COUNTER_CACHE_KEY % key
         return r.hlen(cache_key)
     except (ConnectionError, ResponseError):
+        print('django-experiments failure 3')
         # Handle Redis failures gracefully
         return 0
 
@@ -58,6 +61,7 @@ def get_frequency(key, participant_identifier):
         freq = r.hget(cache_key, participant_identifier)
         return int(freq) if freq else 0
     except (ConnectionError, ResponseError):
+        print('django-experiments failure 4')
         # Handle Redis failures gracefully
         return 0
 
@@ -70,6 +74,7 @@ def get_frequencies(key):
         # zero anyway.
         return dict((int(k),int(v)) for (k,v) in r.hgetall(freq_cache_key).items() if int(v) > 0)
     except (ConnectionError, ResponseError):
+        print('django-experiments failure 5')
         # Handle Redis failures gracefully
         return tuple()
 
@@ -81,6 +86,7 @@ def reset(key):
         r.delete(freq_cache_key)
         return True
     except (ConnectionError, ResponseError):
+        print('django-experiments failure 6')
         # Handle Redis failures gracefully
         return False
 
@@ -95,5 +101,6 @@ def reset_pattern(pattern_key):
             r.delete(key)
         return True
     except (ConnectionError, ResponseError):
+        print('django-experiments failure 7')
         # Handle Redis failures gracefully
         return False
