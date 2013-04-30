@@ -4,7 +4,7 @@ import redis
 from redis.exceptions import ConnectionError, ResponseError
 
 import logging
-logger = logging.getLogger(__name__)
+logger = logging.getLogger()
 logger.debug('Loading counters.py')
 print('debug version of loading counters.py')
 
