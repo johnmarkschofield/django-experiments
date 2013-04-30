@@ -6,13 +6,16 @@ from redis.exceptions import ConnectionError, ResponseError
 import logging
 logger = logging.getLogger(__name__)
 logger.debug('Loading counters.py')
+print('debug version of loading counters.py')
 
 REDIS_HOST = getattr(settings, 'EXPERIMENTS_REDIS_HOST', 'localhost')
 REDIS_PORT = getattr(settings, 'EXPERIMENTS_REDIS_PORT', 6379)
 REDIS_PASSWORD = getattr(settings, 'EXPERIMENTS_REDIS_PASSWORD', None)
 REDIS_EXPERIMENTS_DB = getattr(settings, 'EXPERIMENTS_REDIS_DB', 0)
-
+logger.debug('Instantiating redis')
 r = redis.Redis(host=REDIS_HOST, port=REDIS_PORT, password=REDIS_PASSWORD, db=REDIS_EXPERIMENTS_DB)
+logger.debug('Done connecting to redis.')
+
 
 COUNTER_CACHE_KEY = 'experiments:participants:%s'
 COUNTER_FREQ_CACHE_KEY = 'experiments:freq:%s'
