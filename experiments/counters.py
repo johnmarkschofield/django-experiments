@@ -1,12 +1,11 @@
 from django.conf import settings
-import logging
 
 import redis
 from redis.exceptions import ConnectionError, ResponseError
 
-# Get an instance of a logger
+import logging
 logger = logging.getLogger(__name__)
-logger.deubg("Opening counters.py")
+logger.debug('Loading counters.py')
 
 REDIS_HOST = getattr(settings, 'EXPERIMENTS_REDIS_HOST', 'localhost')
 REDIS_PORT = getattr(settings, 'EXPERIMENTS_REDIS_PORT', 6379)

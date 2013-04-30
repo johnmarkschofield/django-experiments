@@ -17,10 +17,8 @@ from experiments import counters, conf
 from experiments.dateutils import now
 
 
-
-# Get an instance of a logger
 logger = logging.getLogger(__name__)
-logger.debug('Opening models.py')
+logger.debug('Loading django-experiments/experiments/models.py')
 
 PARTICIPANT_KEY = '%s:%s:participant'
 GOAL_KEY = '%s:%s:%s:goal'
