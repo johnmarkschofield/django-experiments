@@ -1,5 +1,5 @@
 from django.conf import settings
-
+print('Starting counters.py')
 import redis
 from redis.exceptions import ConnectionError, ResponseError
 
