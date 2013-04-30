@@ -14,6 +14,7 @@ COUNTER_CACHE_KEY = 'experiments:participants:%s'
 COUNTER_FREQ_CACHE_KEY = 'experiments:freq:%s'
 
 def increment(key, participant_identifier, count=1):
+    print('incrementing a record')
     if count == 0:
         return
 
