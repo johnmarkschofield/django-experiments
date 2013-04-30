@@ -9,12 +9,18 @@ from jsonfield import JSONField
 from gargoyle.manager import gargoyle
 from gargoyle.models import Switch
 
-
+import logging
 import random
 import json
 
 from experiments import counters, conf
 from experiments.dateutils import now
+
+
+
+# Get an instance of a logger
+logger = logging.getLogger(__name__)
+logger.debug('Opening models.py')
 
 PARTICIPANT_KEY = '%s:%s:participant'
 GOAL_KEY = '%s:%s:%s:goal'
@@ -56,7 +62,7 @@ class Experiment(models.Model):
             return True
         else:
             raise Exception("Invalid experiment state %s!" % self.state)
-        
+
 
     def is_accepting_new_users(self, request):
         if self.state == CONTROL_STATE:
