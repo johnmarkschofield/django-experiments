@@ -3,10 +3,11 @@ from django.conf import settings
 import redis
 from redis.exceptions import ConnectionError, ResponseError
 
+from djangofu.general import get_env_variable
+
 import logging
-logger = logging.getLogger('potato')
+logger = logging.getLogger(get_env_variable('LOGROOT') + '.' + __name__)
 logger.debug('Loading counters.py')
-print('debug version of loading counters.py')
 
 REDIS_HOST = getattr(settings, 'EXPERIMENTS_REDIS_HOST', 'localhost')
 REDIS_PORT = getattr(settings, 'EXPERIMENTS_REDIS_PORT', 6379)

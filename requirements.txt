@@ -3,3 +3,4 @@ django>=1.3.0
 nexus>=0.2.3
 jsonfield>=0.9
 gargoyle>=0.9.0
+djangofu
