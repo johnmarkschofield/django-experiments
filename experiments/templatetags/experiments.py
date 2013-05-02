@@ -75,12 +75,12 @@ def experiment(parser, token):
     """
     Split Testing experiment tag has the following syntax :
 
-    {% experiment <experiment_name> <alternative>  %}
+    {% experiment <experiment_name> <alternative> [weight=val] [user=val] %}
     experiment content goes here
     {% endexperiment %}
 
-    If the alternative name is neither 'test' nor 'control' an exception is raised
-    during rendering.
+    One alternative should be called "control"
+
     """
     logger.debug('Entering "experiment" templatetag processor.')
     try:
