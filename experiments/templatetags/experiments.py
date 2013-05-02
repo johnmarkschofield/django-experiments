@@ -1,13 +1,18 @@
 from __future__ import absolute_import
 from uuid import uuid4
+import logging
 
 from django import template
 from django.core.urlresolvers import reverse
+
+from djangofu.general import get_env_variable
 
 from experiments.utils import participant
 from experiments.manager import experiment_manager
 
 register = template.Library()
+
+logger = logging.getLogger(get_env_variable('LOGROOT') + '.' + __name__)
 
 
 @register.inclusion_tag('experiments/goal.html')
@@ -77,6 +82,7 @@ def experiment(parser, token):
     If the alternative name is neither 'test' nor 'control' an exception is raised
     during rendering.
     """
+    logger.debug('Entering "experiment" templatetag processor.')
     try:
         token_contents = token.split_contents()
         experiment_name, alternative, weight, user_variable = _parse_token_contents(token_contents)
