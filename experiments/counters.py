@@ -23,7 +23,7 @@ COUNTER_FREQ_CACHE_KEY = 'experiments:freq:%s'
 
 
 def increment(key, participant_identifier, count=1):
-    logger.debug('incrementing a record')
+    logger.debug('Incrementing key %s, participant_identifier %s, and count %s' % (key, participant_identifier, count))
     if count == 0:
         return
 
